@@ -7,6 +7,7 @@ part of 'todo.dart';
 // **************************************************************************
 
 _Todo _$TodoFromJson(Map<String, dynamic> json) => _Todo(
+  id: (json['id'] as num).toInt(),
   priority:
       $enumDecodeNullable(_$PriorityEnumMap, json['priority']) ?? Priority.low,
   title: json['title'] as String,
@@ -15,6 +16,7 @@ _Todo _$TodoFromJson(Map<String, dynamic> json) => _Todo(
 );
 
 Map<String, dynamic> _$TodoToJson(_Todo instance) => <String, dynamic>{
+  'id': instance.id,
   'priority': _$PriorityEnumMap[instance.priority]!,
   'title': instance.title,
   'description': instance.description,

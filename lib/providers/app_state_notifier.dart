@@ -1,4 +1,4 @@
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/models/app_state.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/providers/json_notifier.dart';

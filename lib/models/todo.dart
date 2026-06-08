@@ -7,6 +7,7 @@ part 'todo.g.dart';
 @freezed
 abstract class Todo with _$Todo {
   const factory Todo({
+    required int id,
     @Default(Priority.low) Priority priority,
     required String title,
     @Default('-') String description,

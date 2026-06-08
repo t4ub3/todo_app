@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Todo {
 
- Priority get priority; String get title; String get description; bool get isCompleted;
+ int get id; Priority get priority; String get title; String get description; bool get isCompleted;
 /// Create a copy of Todo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TodoCopyWith<Todo> get copyWith => _$TodoCopyWithImpl<Todo>(this as Todo, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Todo&&(identical(other.priority, priority) || other.priority == priority)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Todo&&(identical(other.id, id) || other.id == id)&&(identical(other.priority, priority) || other.priority == priority)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,priority,title,description,isCompleted);
+int get hashCode => Object.hash(runtimeType,id,priority,title,description,isCompleted);
 
 @override
 String toString() {
-  return 'Todo(priority: $priority, title: $title, description: $description, isCompleted: $isCompleted)';
+  return 'Todo(id: $id, priority: $priority, title: $title, description: $description, isCompleted: $isCompleted)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TodoCopyWith<$Res>  {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) _then) = _$TodoCopyWithImpl;
 @useResult
 $Res call({
- Priority priority, String title, String description, bool isCompleted
+ int id, Priority priority, String title, String description, bool isCompleted
 });
 
 
@@ -65,9 +65,10 @@ class _$TodoCopyWithImpl<$Res>
 
 /// Create a copy of Todo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? priority = null,Object? title = null,Object? description = null,Object? isCompleted = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? priority = null,Object? title = null,Object? description = null,Object? isCompleted = null,}) {
   return _then(_self.copyWith(
-priority: null == priority ? _self.priority : priority // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,priority: null == priority ? _self.priority : priority // ignore: cast_nullable_to_non_nullable
 as Priority,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Priority priority,  String title,  String description,  bool isCompleted)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  Priority priority,  String title,  String description,  bool isCompleted)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Todo() when $default != null:
-return $default(_that.priority,_that.title,_that.description,_that.isCompleted);case _:
+return $default(_that.id,_that.priority,_that.title,_that.description,_that.isCompleted);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.priority,_that.title,_that.description,_that.isCompleted);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Priority priority,  String title,  String description,  bool isCompleted)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  Priority priority,  String title,  String description,  bool isCompleted)  $default,) {final _that = this;
 switch (_that) {
 case _Todo():
-return $default(_that.priority,_that.title,_that.description,_that.isCompleted);case _:
+return $default(_that.id,_that.priority,_that.title,_that.description,_that.isCompleted);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return $default(_that.priority,_that.title,_that.description,_that.isCompleted);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Priority priority,  String title,  String description,  bool isCompleted)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  Priority priority,  String title,  String description,  bool isCompleted)?  $default,) {final _that = this;
 switch (_that) {
 case _Todo() when $default != null:
-return $default(_that.priority,_that.title,_that.description,_that.isCompleted);case _:
+return $default(_that.id,_that.priority,_that.title,_that.description,_that.isCompleted);case _:
   return null;
 
 }
@@ -212,9 +213,10 @@ return $default(_that.priority,_that.title,_that.description,_that.isCompleted);
 @JsonSerializable()
 
 class _Todo implements Todo {
-  const _Todo({this.priority = Priority.low, required this.title, this.description = '-', required this.isCompleted});
+  const _Todo({required this.id, this.priority = Priority.low, required this.title, this.description = '-', required this.isCompleted});
   factory _Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 
+@override final  int id;
 @override@JsonKey() final  Priority priority;
 @override final  String title;
 @override@JsonKey() final  String description;
@@ -233,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Todo&&(identical(other.priority, priority) || other.priority == priority)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Todo&&(identical(other.id, id) || other.id == id)&&(identical(other.priority, priority) || other.priority == priority)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,priority,title,description,isCompleted);
+int get hashCode => Object.hash(runtimeType,id,priority,title,description,isCompleted);
 
 @override
 String toString() {
-  return 'Todo(priority: $priority, title: $title, description: $description, isCompleted: $isCompleted)';
+  return 'Todo(id: $id, priority: $priority, title: $title, description: $description, isCompleted: $isCompleted)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$TodoCopyWith(_Todo value, $Res Function(_Todo) _then) = __$TodoCopyWithImpl;
 @override @useResult
 $Res call({
- Priority priority, String title, String description, bool isCompleted
+ int id, Priority priority, String title, String description, bool isCompleted
 });
 
 
@@ -270,9 +272,10 @@ class __$TodoCopyWithImpl<$Res>
 
 /// Create a copy of Todo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? priority = null,Object? title = null,Object? description = null,Object? isCompleted = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? priority = null,Object? title = null,Object? description = null,Object? isCompleted = null,}) {
   return _then(_Todo(
-priority: null == priority ? _self.priority : priority // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,priority: null == priority ? _self.priority : priority // ignore: cast_nullable_to_non_nullable
 as Priority,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
