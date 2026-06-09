@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/domain/models/todo.dart';
 
 class AppState {
   List<Todo> todos;

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:todo_app/models/priority.dart';
+import 'package:todo_app/domain/models/priority.dart';
 
 part 'todo.freezed.dart';
 part 'todo.g.dart';

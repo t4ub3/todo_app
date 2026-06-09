@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/main.dart';
-import 'package:todo_app/models/priority.dart';
-import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/domain/models/priority.dart';
+import 'package:todo_app/domain/models/todo.dart';
 
 class EditTodo extends ConsumerWidget {
   EditTodo({super.key});

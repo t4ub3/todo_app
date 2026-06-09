@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/models/app_state.dart';
-import 'package:todo_app/providers/app_state_notifier.dart';
-import 'package:todo_app/providers/json_notifier.dart';
-import 'package:todo_app/screens/todo_list.dart';
+import 'package:todo_app/domain/models/app_state.dart';
+import 'package:todo_app/domain/providers/app_state_notifier.dart';
+import 'package:todo_app/domain/providers/json_notifier.dart';
+import 'package:todo_app/presentation/screens/home_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final provider = AsyncNotifierProvider<AppStateNotifier, AppState>(
@@ -22,7 +22,7 @@ class TodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Todo App',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: TodoList(),
+      home: HomeScreen(),
     );
   }
 }

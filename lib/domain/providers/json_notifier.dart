@@ -2,18 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:riverpod/src/framework.dart';
-import 'package:todo_app/models/app_state.dart';
-import 'package:todo_app/models/priority.dart';
-import 'package:todo_app/models/todo.dart';
-import 'package:todo_app/providers/app_state_notifier.dart';
+import 'package:todo_app/domain/models/app_state.dart';
+import 'package:todo_app/domain/models/priority.dart';
+import 'package:todo_app/domain/models/todo.dart';
+import 'package:todo_app/domain/providers/app_state_notifier.dart';
 
 class JsonNotifier extends AppStateNotifier {
   @override
-  Future<Todo?> addTodo(Todo todo) {
-    final data = state.value ?? AppState(todos: []);
-    data.todos = [...data.todos, todo];
-    _saveState();
-    return Future.value(todo);
+  Todo addTodo(Todo todo) {
+    final currentState = state;
+    currentState.value!.todos = [...currentState.value!.todos, todo];
+    state = currentState;
+    // _saveState();
+    return todo;
   }
 
   @override
@@ -56,13 +57,11 @@ class JsonNotifier extends AppStateNotifier {
     } catch (e) {
       print('Error saving state: $e');
     }
-    _loadState();
     return true;
   }
 
   Future<AppState?> _loadState() async {
     final file = File('app_state.json');
-    print(file.absolute.path);
     try {
       if (await file.exists()) {
         final json = await file.readAsString();
