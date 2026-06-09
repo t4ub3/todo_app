@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_app/main.dart';
+import 'package:todo_app/models/priority.dart';
+import 'package:todo_app/models/todo.dart';
 
 class EditTodo extends ConsumerWidget {
-  const EditTodo({super.key});
+  EditTodo({super.key});
+  final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Dialog(
@@ -16,9 +21,11 @@ class EditTodo extends ConsumerWidget {
               child: Text('Edit Todo'),
             ),
             TextField(
+              controller: _titleController,
               decoration: InputDecoration(labelText: 'Title'),
             ),
             TextField(
+              controller: _descriptionController,
               decoration: InputDecoration(labelText: 'Description'),
             ),
             Row(
@@ -32,7 +39,27 @@ class EditTodo extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Handle save action
+                    if (_titleController.text.isEmpty ||
+                        _descriptionController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Title and description cannot be empty',
+                          ),
+                        ),
+                      );
+                      return;
+                    } else {
+                      final newTodo = Todo(
+                        id: DateTime.now().millisecondsSinceEpoch,
+                        title: _titleController.text,
+                        description: _descriptionController.text,
+                        isCompleted: false,
+                        priority: Priority.low,
+                      );
+                      ref.read(provider.notifier).addTodo(newTodo);
+                      Navigator.pop(context);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,

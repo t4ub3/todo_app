@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:todo_app/models/priority.dart';
 import 'package:todo_app/models/todo.dart';
 
 class AppState {

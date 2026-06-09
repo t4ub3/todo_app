@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:riverpod/src/framework.dart';
 import 'package:todo_app/models/app_state.dart';
 import 'package:todo_app/models/priority.dart';
 import 'package:todo_app/models/todo.dart';
@@ -8,8 +10,10 @@ import 'package:todo_app/providers/app_state_notifier.dart';
 class JsonNotifier extends AppStateNotifier {
   @override
   Future<Todo?> addTodo(Todo todo) {
-    // TODO: implement addTodo
-    throw UnimplementedError();
+    final data = state.value ?? AppState(todos: []);
+    data.todos = [...data.todos, todo];
+    _saveState();
+    return Future.value(todo);
   }
 
   @override
@@ -47,10 +51,12 @@ class JsonNotifier extends AppStateNotifier {
     final file = File('app_state.json');
     try {
       final tempState = state.value ?? AppState(todos: []);
-      await file.writeAsString(tempState.toJson().toString());
+      final jsonString = jsonEncode(tempState.toJson());
+      await file.writeAsString(jsonString);
     } catch (e) {
       print('Error saving state: $e');
     }
+    _loadState();
     return true;
   }
 

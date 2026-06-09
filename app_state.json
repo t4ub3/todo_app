@@ -1,18 +1,1 @@
-{
-    "todos": [
-        {
-            "id": 1,
-            "title": "Buy groceries",
-            "description": "Milk, Bread, Eggs",
-            "isCompleted": false,
-            "priority": "medium"
-        },
-        {
-            "id": 2,
-            "title": "Walk the dog",
-            "description": "",
-            "isCompleted": true,
-            "priority": "high"
-        }
-    ]
-}
+{"todos":[{"id":1781006256706,"priority":"low","title":"Einkaufen","description":"Mehl, Milch, Zucker","isCompleted":false},{"id":1781006308761,"priority":"low","title":"Putzen","description":"Staubsaugen, Wischen","isCompleted":false},{"id":1781007163944,"priority":"low","title":"testen","description":"test, test, test","isCompleted":false}]}
