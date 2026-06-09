@@ -5,7 +5,7 @@ import 'package:todo_app/providers/json_notifier.dart';
 import 'package:todo_app/screens/todo_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final provider = NotifierProvider<AppStateNotifier, AppState>(
+final provider = AsyncNotifierProvider<AppStateNotifier, AppState>(
   () => JsonNotifier(),
 );
 

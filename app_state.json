@@ -1,0 +1,18 @@
+{
+    "todos": [
+        {
+            "id": 1,
+            "title": "Buy groceries",
+            "description": "Milk, Bread, Eggs",
+            "isCompleted": false,
+            "priority": "medium"
+        },
+        {
+            "id": 2,
+            "title": "Walk the dog",
+            "description": "",
+            "isCompleted": true,
+            "priority": "high"
+        }
+    ]
+}

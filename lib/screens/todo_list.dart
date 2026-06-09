@@ -8,7 +8,6 @@ class TodoList extends ConsumerWidget {
   const TodoList({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todos = ref.watch(provider).todos;
     return Scaffold(
       appBar: AppBar(
         title: Text('Todo List'),
@@ -22,12 +21,22 @@ class TodoList extends ConsumerWidget {
         ],
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          final todo = todos[index];
-          return TodoListitem(todo);
-        },
+      body: Center(
+        child: ref
+            .watch(provider)
+            .when(
+              data: (state) {
+                return ListView.builder(
+                  itemCount: state.todos.length,
+                  itemBuilder: (context, index) {
+                    final todo = state.todos[index];
+                    return TodoListitem(todo);
+                  },
+                );
+              },
+              loading: () => const CircularProgressIndicator(),
+              error: (e, st) => const Text('Error loading todos'),
+            ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
